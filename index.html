@@ -49,37 +49,94 @@ body{
 
 <body>
 
-<div class="container" id="heart"></div>
+<div id="home">
+    <h1>❤️ Untuk Kamu ❤️</h1>
+    <button onclick="showHeart()">I LOVE ❤️</button>
+</div>
+
+<div class="container" id="heart" style="display:none;"></div>
+
+<style>
+#home{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#home h1{
+    color:#ff0000;
+    font-size:50px;
+    margin-bottom:30px;
+    text-shadow:
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff3333;
+}
+
+#home button{
+    padding:15px 40px;
+    font-size:22px;
+    font-weight:bold;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    color:white;
+    background:#ff0000;
+    box-shadow:
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff3333,
+        0 0 80px #ff6666;
+    transition:.3s;
+}
+
+#home button:hover{
+    transform:scale(1.1);
+}
+</style>
 
 <script>
-const container = document.getElementById("heart");
 
-for(let t=0; t<360; t+=4){
+function showHeart(){
 
-    let rad = t * Math.PI / 180;
+    document.getElementById("home").style.display="none";
+    document.getElementById("heart").style.display="block";
 
-    let x = 16 * Math.pow(Math.sin(rad),3);
+    const container = document.getElementById("heart");
 
-    let y =
-    13*Math.cos(rad)
-    -5*Math.cos(2*rad)
-    -2*Math.cos(3*rad)
-    -Math.cos(4*rad);
+    for(let t=0; t<360; t+=6){
 
-    let text = document.createElement("div");
+        let rad = t * Math.PI / 180;
 
-    text.className = "love";
-    text.innerText = "I love you";
+        let x = 16 * Math.pow(Math.sin(rad),3);
 
-    text.style.left = (x * 15 + 230) + "px";
-    text.style.top = (-y * 15 + 230) + "px";
+        let y =
+        13*Math.cos(rad)
+        -5*Math.cos(2*rad)
+        -2*Math.cos(3*rad)
+        -Math.cos(4*rad);
 
-    text.style.animationDelay =
-    Math.random()*3 + "s";
+        let text = document.createElement("div");
 
-    container.appendChild(text);
+        text.className = "love";
+        text.innerText = "❤️ I LOVE YOU ❤️";
+
+        text.style.left = (x * 18 + 230) + "px";
+        text.style.top = (-y * 18 + 230) + "px";
+
+        text.style.animationDelay = Math.random()*3 + "s";
+
+        container.appendChild(text);
+    }
 }
+
 </script>
 
 </body>
-</html>
