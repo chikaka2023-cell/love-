@@ -26,28 +26,32 @@ body{
 .love{
     position:absolute;
     color:#ff1a1a;
-    font-size:20px;
+    font-size:16px;
     font-weight:bold;
     text-shadow:
+        0 0 5px #ff0000,
         0 0 10px #ff0000,
         0 0 20px #ff0000,
-        0 0 40px #ff0000,
-        0 0 80px #ff0000,
-        0 0 120px #ff3333;
-    animation:float 4s infinite linear;
+        0 0 40px #ff3333,
+        0 0 80px #ff6666;
+    animation:float 4s infinite linear,
+              glow 1.5s ease-in-out infinite alternate;
 }
 
-@keyframes float{
-    0%{
-        opacity:0;
-        transform:translateY(20px) scale(0.5);
+@keyframes glow{
+    from{
+        text-shadow:
+            0 0 5px #ff0000,
+            0 0 10px #ff0000,
+            0 0 20px #ff0000;
     }
-    50%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-        transform:translateY(-20px) scale(1);
+
+    to{
+        text-shadow:
+            0 0 10px #ff0000,
+            0 0 20px #ff0000,
+            0 0 40px #ff3333,
+            0 0 80px #ff6666;
     }
 }
 </style>
@@ -55,93 +59,37 @@ body{
 
 <body>
 
-<div id="startPage">
-    <h1>❤️ Untuk Kamu ❤️</h1>
-    <button onclick="startLove()">I LOVE ❤️</button>
-</div>
-
-<div class="container" id="heart" style="display:none;"></div>
-
-<style>
-#startPage{
-    position:absolute;
-    width:100%;
-    height:100vh;
-    background:linear-gradient(135deg,#ff9ecf,#ff69b4);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-
-#startPage h1{
-    color:white;
-    margin-bottom:30px;
-    font-size:40px;
-}
-
-#startPage button{
-    padding:15px 40px;
-    border:none;
-    border-radius:50px;
-    background:white;
-    color:#ff1493;
-    font-size:22px;
-    cursor:pointer;
-    font-weight:bold;
-    box-shadow:0 0 20px rgba(255,255,255,.7);
-    transition:.3s;
-}
-
-#startPage button:hover{
-    transform:scale(1.1);
-}
-</style>
+<div class="container" id="heart"></div>
 
 <script>
+const container = document.getElementById("heart");
 
-function startLove(){
-    document.getElementById("startPage").style.display="none";
-    document.getElementById("heart").style.display="block";
+for(let t=0; t<360; t+=4){
 
-    const container = document.getElementById("heart");
+    let rad = t * Math.PI / 180;
 
-    for(let t=0; t<360; t+=2){ /* lebih rapat */
+    let x = 16 * Math.pow(Math.sin(rad),3);
 
-        let rad = t * Math.PI / 180;
+    let y =
+    13*Math.cos(rad)
+    -5*Math.cos(2*rad)
+    -2*Math.cos(3*rad)
+    -Math.cos(4*rad);
 
-        let x = 16 * Math.pow(Math.sin(rad),3);
+    let text = document.createElement("div");
 
-        let y =
-        13*Math.cos(rad)
-        -5*Math.cos(2*rad)
-        -2*Math.cos(3*rad)
-        -Math.cos(4*rad);
+    text.className = "love";
+    text.innerText = "I love you";
 
-        let text = document.createElement("div");
+    text.style.left = (x * 15 + 230) + "px";
+    text.style.top = (-y * 15 + 230) + "px";
 
-        text.className = "love";
+    text.style.animationDelay =
+    Math.random()*3 + "s";
 
-        const words = [
-            "I LOVE YOU ❤️",
-            "LOVE ❤️",
-            "FOREVER ❤️",
-            "MISS YOU ❤️",
-            "I LOVE YOU ❤️"
-        ];
-
-       text.innerText = "❤️ I LOVE YOU ❤️";
-        words[Math.floor(Math.random()*words.length)];
-
-        text.style.left = (x * 15 + 230) + "px";
-        text.style.top = (-y * 15 + 230) + "px";
-
-        text.style.animationDelay =
-        Math.random()*3 + "s";
-
-        container.appendChild(text);
-    }
+    container.appendChild(text);
 }
 </script>
 
 </body>
+</html>
