@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -25,33 +25,23 @@ body{
 
 .love{
     position:absolute;
-    color:#ff1a1a;
-    font-size:16px;
-    font-weight:bold;
-    text-shadow:
-        0 0 5px #ff0000,
-        0 0 10px #ff0000,
-        0 0 20px #ff0000,
-        0 0 40px #ff3333,
-        0 0 80px #ff6666;
-    animation:float 4s infinite linear,
-              glow 1.5s ease-in-out infinite alternate;
+    color:#ff9ecf;
+    font-size:20px;
+    text-shadow:0 0 10px #ff69b4;
+    animation:float 4s infinite linear;
 }
 
-@keyframes glow{
-    from{
-        text-shadow:
-            0 0 5px #ff0000,
-            0 0 10px #ff0000,
-            0 0 20px #ff0000;
+@keyframes float{
+    0%{
+        opacity:0;
+        transform:translateY(20px) scale(0.5);
     }
-
-    to{
-        text-shadow:
-            0 0 10px #ff0000,
-            0 0 20px #ff0000,
-            0 0 40px #ff3333,
-            0 0 80px #ff6666;
+    50%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-20px) scale(1);
     }
 }
 </style>
