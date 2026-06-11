@@ -111,9 +111,10 @@ function showHeart(){
 
     const container = document.getElementById("heart");
 
-    for(let t=0; t<360; t+=6){
+    for(let t=0; t<360; t+=4){
 
-        let rad = t * Math.PI / 180;
+
+    let rad = t * Math.PI / 180;
 
         let x = 16 * Math.pow(Math.sin(rad),3);
 
@@ -128,8 +129,8 @@ function showHeart(){
         text.className = "love";
         text.innerText = " I LOVE YOU ";
 
-        text.style.left = (x * 18 + 230) + "px";
-        text.style.top = (-y * 18 + 230) + "px";
+        text.style.left = (x * 15 + 230) + "px";
+        text.style.top = (-y * 15 + 230) + "px";
 
         text.style.animationDelay = Math.random()*3 + "s";
 
