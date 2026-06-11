@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You Heart</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    position:relative;
+    width:500px;
+    height:500px;
+}
+
+.love{
+    position:absolute;
+    color:#ff9ecf;
+    font-size:20px;
+    text-shadow:0 0 10px #ff69b4;
+    animation:float 4s infinite linear;
+}
+
+@keyframes float{
+    0%{
+        opacity:0;
+        transform:translateY(20px) scale(0.5);
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-20px) scale(1);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="heart"></div>
+
+<script>
+const container = document.getElementById("heart");
+
+for(let t=0; t<360; t+=4){
+
+    let rad = t * Math.PI / 180;
+
+    let x = 16 * Math.pow(Math.sin(rad),3);
+
+    let y =
+    13*Math.cos(rad)
+    -5*Math.cos(2*rad)
+    -2*Math.cos(3*rad)
+    -Math.cos(4*rad);
+
+    let text = document.createElement("div");
+
+    text.className = "love";
+    text.innerText = "I love you";
+
+    text.style.left = (x * 15 + 230) + "px";
+    text.style.top = (-y * 15 + 230) + "px";
+
+    text.style.animationDelay =
+    Math.random()*3 + "s";
+
+    container.appendChild(text);
+}
+</script>
+
+</body>
+</html>
